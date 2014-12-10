@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <title>Codefellows Python Coding Challenge Todos</title>
+
+  <script type="text/JavaScript">
+    
+    var number_of_items = 0;
+    var list = [];
+    var list_container = document.createElement("div");
+    list_container.id = "container"; 
+
+    function additem(){
+        list.unshift(document.getElementById("todo").value);
+        document.getElementById("todo").value = "";
+        ++number_of_items;
+
+        makelist();
+    }
+    function makelist(){
+        list_container.innerHTML = "";
+        document.getElementsByTagName("body")[0].appendChild(list_container);
+        var list_element = document.createElement("ul");
+        list_container.appendChild(list_element);
+     
+        for( var i=0 ; i < number_of_items ; ++i){
+			   var list_item = document.createElement("li");
+			   list_item.id = i;
+	          	   list_item.innerHTML = list[i];
+
+			   list_item.onclick = function(){
+			        
+			        list.splice(this.id, 1);
+			        --number_of_items;
+			        makelist();
+			   
+			   }
+
+			   list_element.appendChild(list_item);
+        }
+    }
+
+  </script>
+
+  <body>
+    Todo: <input type="text" id="todo">
+    
+    <input type="button" value="Submit" onclick="additem()" />
+    
+    
+    
+  </body>
+</html>
+
